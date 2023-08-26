@@ -18,7 +18,7 @@ public class StartActivity extends AppCompatActivity {
 
         startLoading();
     }
-    
+
     private void startLoading() {
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
