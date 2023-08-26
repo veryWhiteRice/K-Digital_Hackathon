@@ -19,7 +19,7 @@
         android:orientation="vertical">
 
         <EditText
-            android:id="@+id/id"
+            android:id="@+id/email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
@@ -113,10 +113,10 @@
         </RadioGroup>
 
         <Button
-            android:id="@+id/check"
+            android:id="@+id/register_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:text="확인" />
+            android:text="회원가입" />
     </LinearLayout>
 </LinearLayout>

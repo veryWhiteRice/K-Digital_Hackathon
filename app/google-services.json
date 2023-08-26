@@ -1,33 +1,34 @@
 {
   "project_info": {
-    "project_number": "530675624531",
-    "project_id": "pillsogood-2939c",
-    "storage_bucket": "pillsogood-2939c.appspot.com"
+    "project_number": "1055603745648",
+    "firebase_url": "https://pillsogoodauth-default-rtdb.firebaseio.com",
+    "project_id": "pillsogoodauth",
+    "storage_bucket": "pillsogoodauth.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:530675624531:android:3dd71ac6aad4479617b4a6",
+        "mobilesdk_app_id": "1:1055603745648:android:2f9321022087d8b0af65b5",
         "android_client_info": {
           "package_name": "com.project.pill_so_good"
         }
       },
       "oauth_client": [
         {
-          "client_id": "530675624531-18rr7qbq306famk0b3nfp96aoguchmoj.apps.googleusercontent.com",
+          "client_id": "1055603745648-csb4sj3vq3kcq15dj44rehmslg7ccm5h.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDGB472neoLdeatjC93y0TEqvXMhxwoMyM"
+          "current_key": "AIzaSyAVLWzQ-pm-MS0_O7s3X_0k3kkm9a5Ktgs"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "530675624531-18rr7qbq306famk0b3nfp96aoguchmoj.apps.googleusercontent.com",
+              "client_id": "1055603745648-csb4sj3vq3kcq15dj44rehmslg7ccm5h.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
