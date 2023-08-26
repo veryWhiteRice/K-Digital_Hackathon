@@ -4,28 +4,24 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.project.pill_so_good.R;
+import com.project.pill_so_good.member.autoLogin.AutoLoginService;
 import com.project.pill_so_good.member.login.LoginService;
 
 public class LoginActivity extends AppCompatActivity {
 
-    
+
     private LoginService loginService;
     private EditText etEmail, etPassword;
     private Button loginBtn, signUpBtn;
+
+    private CheckBox autoLoginCheck;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -38,21 +34,30 @@ public class LoginActivity extends AppCompatActivity {
         etPassword = findViewById(R.id.login_password);
         loginBtn = findViewById(R.id.login_btn);
         signUpBtn = findViewById(R.id.signup_btn);
+        autoLoginCheck = findViewById(R.id.auto_login_checkbox);
 
-        loginBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String email = etEmail.getText().toString();
-                String password = etPassword.getText().toString();
-                loginService.login(email, password, LoginActivity.this);
-            }
-        });
+        setLoginBtn();
+        setSignUpBtn();
+    }
 
+
+    private void setSignUpBtn() {
         signUpBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(LoginActivity.this, SignUpActivity.class);
                 startActivity(intent);
+            }
+        });
+    }
+
+    private void setLoginBtn() {
+        loginBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String email = etEmail.getText().toString();
+                String password = etPassword.getText().toString();
+                loginService.login(email, password, LoginActivity.this, autoLoginCheck.isChecked());
             }
         });
     }

@@ -1,5 +1,6 @@
 package com.project.pill_so_good.member.login;
 
+import android.content.Context;
 import android.content.Intent;
 import android.widget.Toast;
 
@@ -14,6 +15,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.project.pill_so_good.layout.LoginActivity;
 import com.project.pill_so_good.layout.MainActivity;
+import com.project.pill_so_good.member.autoLogin.AutoLoginService;
 
 public class LoginService {
 
@@ -25,12 +27,14 @@ public class LoginService {
         databaseReference = FirebaseDatabase.getInstance().getReference();
     }
 
-    public void login(String email, String password, AppCompatActivity activity) {
+    public void login(String email, String password, AppCompatActivity activity, Boolean isCheckAutoLogin) {
         firebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(activity, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
-                    // 로그인 성공
+                    if (isCheckAutoLogin)
+                        AutoLoginService.setLoginInfo(activity, email, password);
+
                     Intent intent = new Intent(activity, MainActivity.class);
                     activity.startActivity(intent);
                     activity.finish();
@@ -41,3 +45,5 @@ public class LoginService {
         });
     }
 }
+
+

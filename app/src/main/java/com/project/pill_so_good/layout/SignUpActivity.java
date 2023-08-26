@@ -36,17 +36,17 @@ public class SignUpActivity extends AppCompatActivity {
 
         rgGender = findViewById(R.id.rg_gender);
         rgDivision = findViewById(R.id.rg_status);
+        setRegisterBtn();
+    }
+
+    private void setRegisterBtn() {
         registerBtn = findViewById(R.id.register_btn);
 
-        registerBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                try {
-                    signUpService.signUp(getMemberInfo(), SignUpActivity.this);
-                } catch (IllegalArgumentException e) {
-                    Toast.makeText(SignUpActivity.this, "모든 칸을 입력해주세요.", Toast.LENGTH_SHORT).show();
-                }
-
+        registerBtn.setOnClickListener(task -> {
+            try {
+                signUpService.signUp(getMemberInfo(), SignUpActivity.this);
+            } catch (IllegalArgumentException e) {
+                Toast.makeText(SignUpActivity.this, "모든 칸을 입력해주세요.", Toast.LENGTH_SHORT).show();
             }
         });
     }
