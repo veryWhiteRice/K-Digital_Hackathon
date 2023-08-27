@@ -18,7 +18,7 @@ import com.project.pill_so_good.member.signup.SignUpService;
 public class SignUpActivity extends AppCompatActivity {
 
     private SignUpService signUpService;
-    private EditText etEmail, etPassword, etCheckPassword, etAge;
+    private EditText etName, etEmail, etPassword, etCheckPassword, etAge;
     private RadioGroup rgGender, rgDivision;
     private Button registerBtn;
 
@@ -29,6 +29,7 @@ public class SignUpActivity extends AppCompatActivity {
 
         signUpService = new SignUpService();
 
+        etName = findViewById(R.id.name);
         etEmail = findViewById(R.id.email);
         etPassword = findViewById(R.id.password);
         etCheckPassword = findViewById(R.id.password_check);
@@ -52,6 +53,7 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     private Member getMemberInfo() {
+        String name = etName.getText().toString();
         String email = etEmail.getText().toString();
         String password = etPassword.getText().toString();
         String checkPassword = etCheckPassword.getText().toString();
@@ -60,7 +62,7 @@ public class SignUpActivity extends AppCompatActivity {
         String gender = getRadioButtonInfo(this.rgGender);
         String division = getRadioButtonInfo(this.rgDivision);
 
-        return new Member(email, password, checkPassword, age, gender, division);
+        return new Member(name, email, password, checkPassword, age, gender, division);
     }
 
     private String getRadioButtonInfo(RadioGroup radioGroup) {

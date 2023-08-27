@@ -35,6 +35,7 @@ public class SignUpService {
                     member.setEmailId(firebaseUser.getEmail());
 
                     databaseReference.child("Member").child(firebaseUser.getUid()).setValue(member);
+
                     showToast("회원가입이 완료되었습니다.", activity);
                     activity.finish();
                 } else {

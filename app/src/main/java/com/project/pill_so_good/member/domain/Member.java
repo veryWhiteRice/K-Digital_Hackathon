@@ -5,6 +5,8 @@ public class Member {
     private String idToken;
     private String emailId;
 
+    private final String name;
+
     private final String email;
     private final String password;
     private final int age;
@@ -12,7 +14,8 @@ public class Member {
     private final Division division;
 
 
-    public Member(String email, String password, String passwordCheck, int age, String gender, String division) {
+    public Member(String name, String email, String password, String passwordCheck, int age, String gender, String division) {
+        this.name = name;
         this.email = email;
         this.password = checkPassword(password, passwordCheck);
         this.age = checkAge(age);
@@ -30,6 +33,10 @@ public class Member {
         if (age >=0 && age <120)
             return age;
         throw new IllegalArgumentException();
+    }
+
+    public String getName() {
+        return name;
     }
 
     public String getEmail() {
