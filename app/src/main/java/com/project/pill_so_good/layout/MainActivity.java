@@ -29,6 +29,19 @@ import com.project.pill_so_good.member.autoLogin.AutoLoginService;
 import com.project.pill_so_good.member.logout.LogoutService;
 import com.project.pill_so_good.member.memberInfo.UserInfoService;
 
+import android.content.pm.PackageManager;
+import android.os.Build;
+import androidx.appcompat.app.AppCompatActivity;
+import android.os.Bundle;
+import android.util.Base64;
+import android.util.Log;
+import androidx.annotation.RequiresApi;
+import java.security.MessageDigest;
+import android.content.pm.PackageInfo;
+import android.content.pm.Signature;
+import java.security.NoSuchAlgorithmException;
+
+
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
@@ -38,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
     private LogoutService logoutService;
     private UserInfoService userInfoService;
 
-    private Button logoutBtn, cameraBtn, galleryBtn, analyzeBtn;
+    private Button logoutBtn, cameraBtn, galleryBtn, analyzeBtn, map;
 
     private Photo photo;
     private ImageInfo imageInfo;
@@ -54,15 +67,39 @@ public class MainActivity extends AppCompatActivity {
         photo = new Photo();
         imageInfo = ImageInfo.getInstance();
 
+        try {
+            PackageInfo info = getPackageManager().getPackageInfo(getPackageName(), PackageManager.GET_SIGNATURES);
+            for (Signature signature : info.signatures) {
+                MessageDigest md = MessageDigest.getInstance("SHA");
+                md.update(signature.toByteArray());
+                Log.d("키해시는 :", Base64.encodeToString(md.digest(), Base64.DEFAULT));
+            }
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
 
         setLogoutButton();
         setCameraBtn();
         setGalleryBtn();
         setAnalyzeBtn();
-
+        clkmapbtn();
         setCameraResultLauncher();
-    }
 
+    }
+    private void clkmapbtn()
+    {
+        map = findViewById(R.id.map);
+        map.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Intent를 사용하여 MapActivity를 시작
+                Intent intent = new Intent(MainActivity.this, MapActivity.class);
+                startActivity(intent);
+            }
+        });
+    }
     private void setCameraResultLauncher() {
         cameraResultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
                 new ActivityResultCallback<ActivityResult>() {
